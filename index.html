@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNFLOCK AMERICA — End Warrantless ALPR Surveillance</title>
+<meta name="description" content="Free, constitutional tools to cancel Flock Safety contracts in your city. Model ordinance, FOIA templates, legal analysis, and campaign playbook.">
+<style>
+/* === RESET === */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;background:#0a0e14;color:#e8e6e3;line-height:1.7;-webkit-font-smoothing:antialiased}
+
+/* === TYPOGRAPHY === */
+h1,h2,h3{font-weight:700;line-height:1.2}
+h1{font-size:clamp(2rem,5vw,3.5rem);letter-spacing:-0.02em}
+h2{font-size:clamp(1.5rem,3vw,2.2rem);margin-bottom:1.5rem}
+h3{font-size:1.25rem;margin-bottom:0.75rem}
+p{max-width:65ch;margin-bottom:1rem}
+a{color:#C9A96E;text-decoration:none;transition:color .2s}
+a:hover,a:focus{color:#e0c080}
+a:focus-visible{outline:2px solid #C9A96E;outline-offset:2px;border-radius:2px}
+
+/* === LAYOUT === */
+.container{max-width:960px;margin:0 auto;padding:0 1.5rem}
+section{padding:5rem 0}
+
+/* === HERO === */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;padding:2rem 0}
+.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse at 30% 50%,rgba(201,169,110,0.04) 0%,transparent 60%),radial-gradient(ellipse at 70% 50%,rgba(201,169,110,0.02) 0%,transparent 60%);pointer-events:none}
+.hero h1{font-size:clamp(2.5rem,6vw,4.5rem);margin-bottom:1rem}
+.hero .subtitle{font-size:clamp(1rem,2vw,1.3rem);color:#888;margin-bottom:2rem;max-width:55ch}
+.hero .emblem{font-size:3rem;margin-bottom:1.5rem;display:block}
+
+/* === BUTTONS === */
+.btn-group{display:flex;flex-wrap:wrap;gap:1rem;margin:2rem 0}
+.btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 1.75rem;border-radius:6px;font-weight:600;font-size:1rem;border:none;cursor:pointer;transition:all .2s}
+.btn-primary{background:#C9A96E;color:#0a0e14}
+.btn-primary:hover{background:#d4b87a;transform:translateY(-1px);color:#0a0e14}
+.btn-outline{border:1.5px solid #C9A96E;color:#C9A96E;background:transparent}
+.btn-outline:hover{background:rgba(201,169,110,0.1);color:#e0c080}
+.btn-github{background:#24292e;color:#fff}
+.btn-github:hover{background:#2b3137;color:#fff}
+
+/* === THE KIT SECTION === */
+.kit-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;margin:2rem 0}
+.kit-card{background:#111820;border:1px solid #1e2836;border-radius:8px;padding:1.75rem;transition:border-color .2s,transform .2s}
+.kit-card:hover{border-color:#C9A96E;transform:translateY(-2px)}
+.kit-card .icon{font-size:1.75rem;margin-bottom:0.75rem;display:block}
+.kit-card h3{font-size:1.1rem;margin-bottom:0.5rem}
+.kit-card p{font-size:0.9rem;color:#999;margin-bottom:1rem;max-width:none}
+.kit-card .file-link{font-size:0.85rem;color:#C9A96E;font-family:monospace}
+
+/* === STATS === */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;margin:2rem 0;text-align:center}
+.stat-number{font-size:2.5rem;font-weight:800;color:#C9A96E;display:block}
+.stat-label{font-size:0.9rem;color:#888;margin-top:0.25rem}
+
+/* === TIMELINE === */
+.timeline{position:relative;margin:2rem 0}
+.timeline::before{content:'';position:absolute;left:0;top:0;height:100%;width:2px;background:#1e2836}
+.timeline-item{padding-left:2rem;position:relative;margin-bottom:2rem}
+.timeline-item::before{content:'';position:absolute;left:-4px;top:0.5rem;width:10px;height:10px;border-radius:50%;background:#C9A96E;border:2px solid #0a0e14}
+.timeline-item h3{font-size:1rem;margin-bottom:0.25rem}
+.timeline-item p{font-size:0.9rem;color:#999;margin-bottom:0}
+
+/* === QUOTE === */
+.quote-block{border-left:3px solid #C9A96E;padding:1.5rem 2rem;margin:2rem 0;background:rgba(201,169,110,0.03);border-radius:0 8px 8px 0}
+.quote-block p{font-style:italic;font-size:1.1rem;max-width:none;margin-bottom:0.5rem}
+.quote-block cite{font-style:normal;font-size:0.9rem;color:#888}
+
+/* === FOOTER === */
+footer{padding:3rem 0;border-top:1px solid #1e2836;text-align:center;color:#555;font-size:0.85rem}
+footer a{color:#666}
+footer a:hover{color:#C9A96E}
+
+/* === MISC === */
+.section-label{text-transform:uppercase;letter-spacing:0.1em;font-size:0.75rem;color:#C9A96E;margin-bottom:0.5rem;font-weight:600}
+hr{border:none;border-top:1px solid #1e2836;margin:0}
+.tag{display:inline-block;padding:0.2rem 0.6rem;border-radius:4px;font-size:0.75rem;font-weight:600;background:rgba(201,169,110,0.1);color:#C9A96E;margin-right:0.5rem;margin-bottom:0.5rem}
+.tag-success{background:rgba(34,197,94,0.1);color:#22c55e}
+.tag-danger{background:rgba(239,68,68,0.1);color:#ef4444}
+
+/* === RESPONSIVE === */
+@media(max-width:600px){section{padding:3rem 0}.hero{min-height:auto;padding:4rem 0}.kit-grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <span class="emblem">🦅</span>
+    <h1>UNFLOCK<br>AMERICA</h1>
+    <p class="subtitle">A constitutional movement to end warrantless ALPR surveillance in your city. Free tools, model legislation, and a proven playbook — built by citizens, for citizens.</p>
+    <div class="btn-group">
+      <a href="https://github.com/UnflockAmerica/unflock-america/archive/refs/heads/main.zip" class="btn btn-primary">⬇ Download the Full Kit</a>
+      <a href="https://github.com/UnflockAmerica/unflock-america" class="btn btn-github" target="_blank">&#9998; GitHub Repository</a>
+    </div>
+  </div>
+</section>
+
+<!-- THE PROBLEM -->
+<section id="problem">
+  <div class="container">
+    <span class="section-label">The Problem</span>
+    <h2>83,000 Cameras. Zero Warrants.</h2>
+    <p>Flock Safety operates the largest automated license plate reader network in the United States — over 83,000 cameras that capture every vehicle, every day, everywhere. This data is stored, searched, and shared across jurisdictions without a warrant, without probable cause, and without your consent.</p>
+    <div class="stats">
+      <div>
+        <span class="stat-number">83,000+</span>
+        <span class="stat-label">Cameras Nationwide</span>
+      </div>
+      <div>
+        <span class="stat-number">3.9M</span>
+        <span class="stat-label">Warrantless Searches (San Jose, 1 year)</span>
+      </div>
+      <div>
+        <span class="stat-number">1.6M</span>
+        <span class="stat-label">Federal Data Shares (SFPD)</span>
+      </div>
+      <div>
+        <span class="stat-number">30+</span>
+        <span class="stat-label">Cities Have Already Canceled</span>
+      </div>
+    </div>
+    <div class="quote-block">
+      <p>"A person does not surrender all Fourth Amendment protection by venturing into the public sphere. To the contrary, what one seeks to preserve as private, even in an area accessible to the public, may be constitutionally protected."</p>
+      <cite>— Chief Justice John Roberts, <em>Carpenter v. United States</em> (2018)</cite>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<!-- THE KIT -->
+<section id="kit">
+  <div class="container">
+    <span class="section-label">The Arsenal</span>
+    <h2>Everything You Need to Fight</h2>
+    <p>Six ready-to-use files. No lawyers required. No affiliation needed. Fork it, adapt it, take it to your city council.</p>
+    <div class="kit-grid">
+      <div class="kit-card">
+        <span class="icon">📜</span>
+        <h3>Model Ordinance</h3>
+        <p>A 13-section municipal ordinance ready for introduction. Warrant requirements, 7-day retention, annual audits, data-sharing ban, private right of action, and evidence suppression.</p>
+        <span class="file-link">01-MODEL-ORDINANCE.md</span>
+      </div>
+      <div class="kit-card">
+        <span class="icon">🔍</span>
+        <h3>FOIA Request Template</h3>
+        <p>A comprehensive 7-category public records request. Camera inventory, contracts, search logs, training records, retention policies, misuse complaints, and vendor security audits.</p>
+        <span class="file-link">02-FOIA-TEMPLATE.md</span>
+      </div>
+      <div class="kit-card">
+        <span class="icon">🎙</span>
+        <h3>Public Testimony Script</h3>
+        <p>A timed 2.5-minute citizen testimony script for city council meetings, plus a 60-second short version and a fact-sheet cheat card with key data points.</p>
+        <span class="file-link">03-TESTIMONY-TEMPLATE.md</span>
+      </div>
+      <div class="kit-card">
+        <span class="icon">⚖</span>
+        <h3>Constitutional Legal Memo</h3>
+        <p>Full analysis of why Flock violates the Fourth, First, and Fourteenth Amendments. Includes state constitutional comparison table and active litigation tracker.</p>
+        <span class="file-link">04-LEGAL-MEMO.md</span>
+      </div>
+      <div class="kit-card">
+        <span class="icon">📋</span>
+        <h3>Campaign Playbook</h3>
+        <p>A week-by-week 90-day plan covering reconnaissance, coalition building, pressure campaigns, and the final vote. Includes what to do if you win AND if you lose.</p>
+        <span class="file-link">05-CAMPAIGN-PLAYBOOK.md</span>
+      </div>
+      <div class="kit-card">
+        <span class="icon">📖</span>
+        <h3>Project README</h3>
+        <p>The front door of UnFlock America — a complete overview of the project, where to start based on your role, and OPSEC guidelines for safe activism.</p>
+        <span class="file-link">README.md</span>
+      </div>
+    </div>
+    <div class="btn-group" style="justify-content:center">
+      <a href="https://github.com/UnflockAmerica/unflock-america/archive/refs/heads/main.zip" class="btn btn-primary">⬇ Download All Files (.zip)</a>
+      <a href="https://github.com/UnflockAmerica/unflock-america" class="btn btn-outline" target="_blank">&#9998; Browse on GitHub</a>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<!-- HOW TO USE -->
+<section id="how-to">
+  <div class="container">
+    <span class="section-label">How to Use</span>
+    <h2>Take Action in Your City</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h3>1. File a FOIA Request</h3>
+        <p>Use the FOIA template to request every Flock contract, search log, and policy from your local police department. The data you get back is the ammunition.</p>
+      </div>
+      <div class="timeline-item">
+        <h3>2. Organize Locally</h3>
+        <p>Contact your ACLU affiliate, NAACP chapter, Planned Parenthood, and local libertarian groups. This is the rare issue that unites the left and right.</p>
+      </div>
+      <div class="timeline-item">
+        <h3>3. Speak at City Council</h3>
+        <p>Use the testimony script at your next council meeting. Time it for when your Flock contract is up for renewal. Bring the evidence.</p>
+      </div>
+      <div class="timeline-item">
+        <h3>4. Introduce the Ordinance</h3>
+        <p>Work with a friendly council member to introduce the model ordinance. The warrant requirement, 7-day retention, and audit provisions are the critical pieces.</p>
+      </div>
+      <div class="timeline-item">
+        <h3>5. Win — Then Share</h3>
+        <p>When your city cancels its Flock contract, document what worked and share it. Every win becomes the template for the next city.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<!-- OPSEC -->
+<section id="opsec">
+  <div class="container">
+    <span class="section-label">Security</span>
+    <h2>Justice Doesn't Need a Name</h2>
+    <p>This is constitutionally protected First Amendment activity. But surveillance companies monitor their opposition. Protect yourself:</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem;margin:2rem 0">
+      <div style="background:#111820;border:1px solid #1e2836;border-radius:8px;padding:1.5rem">
+        <span style="display:block;font-size:1.5rem;margin-bottom:0.5rem">📧</span>
+        <h3 style="font-size:1rem;margin-bottom:0.25rem">ProtonMail</h3>
+        <p style="font-size:0.85rem;color:#999;max-width:none">Use encrypted email for all campaign communications. Never use personal email.</p>
+      </div>
+      <div style="background:#111820;border:1px solid #1e2836;border-radius:8px;padding:1.5rem">
+        <span style="display:block;font-size:1.5rem;margin-bottom:0.5rem">🔒</span>
+        <h3 style="font-size:1rem;margin-bottom:0.25rem">Signal</h3>
+        <p style="font-size:0.85rem;color:#999;max-width:none">Use Signal for coalition discussions. Encrypted, disappearing messages, no metadata retention.</p>
+      </div>
+      <div style="background:#111820;border:1px solid #1e2836;border-radius:8px;padding:1.5rem">
+        <span style="display:block;font-size:1.5rem;margin-bottom:0.5rem">🛡</span>
+        <h3 style="font-size:1rem;margin-bottom:0.25rem">VPN</h3>
+        <p style="font-size:0.85rem;color:#999;max-width:none">Use a VPN or public wifi for research. Never log into campaign accounts from your home network.</p>
+      </div>
+      <div style="background:#111820;border:1px solid #1e2836;border-radius:8px;padding:1.5rem">
+        <span style="display:block;font-size:1.5rem;margin-bottom:0.5rem">📱</span>
+        <h3 style="font-size:1rem;margin-bottom:0.25rem">Burner Accounts</h3>
+        <p style="font-size:0.85rem;color:#999;max-width:none">Create separate social media accounts for campaign work. No personal profiles.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p><strong>UNFLOCK AMERICA</strong> — A constitutional movement to end warrantless ALPR surveillance.</p>
+    <p style="margin-top:0.5rem">No copyright claimed. No government affiliation. No attribution required. <a href="https://github.com/UnflockAmerica/unflock-america">Fork this on GitHub</a>.</p>
+    <p style="margin-top:0.5rem"><em>"The right of the people to be secure in their persons, houses, papers, and effects, against unreasonable searches and seizures, shall not be violated..."</em><br>— Fourth Amendment, United States Constitution</p>
+  </div>
+</footer>
+
+</body>
+</html>
