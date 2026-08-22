@@ -5,260 +5,340 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>UNFLOCK AMERICA — End Warrantless ALPR Surveillance</title>
 <meta name="description" content="Free, constitutional tools to cancel Flock Safety contracts in your city. Model ordinance, FOIA templates, legal analysis, and campaign playbook.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,300..900&display=swap" rel="stylesheet">
 <style>
-/* === RESET === */
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;background:#0a0e14;color:#e8e6e3;line-height:1.7;-webkit-font-smoothing:antialiased}
-
-/* === TYPOGRAPHY === */
-h1,h2,h3{font-weight:700;line-height:1.2}
-h1{font-size:clamp(2rem,5vw,3.5rem);letter-spacing:-0.02em}
-h2{font-size:clamp(1.5rem,3vw,2.2rem);margin-bottom:1.5rem}
-h3{font-size:1.25rem;margin-bottom:0.75rem}
-p{max-width:65ch;margin-bottom:1rem}
-a{color:#C9A96E;text-decoration:none;transition:color .2s}
-a:hover,a:focus{color:#e0c080}
-a:focus-visible{outline:2px solid #C9A96E;outline-offset:2px;border-radius:2px}
-
-/* === LAYOUT === */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:'Inter',sans-serif;background:#0E1422;color:#e8e6e3;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+#particles{position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:0;opacity:.35}
+.hero,.container{position:relative;z-index:1}
+h1,h2,h3{font-family:'Fraunces',serif;font-weight:400;line-height:1.1}
+h1{font-size:clamp(3rem,8vw,6rem);letter-spacing:-.03em;font-variation-settings:'opsz' 96}
+h1 .gold{color:#C9A96E}
+h1 .glitch{position:relative;display:inline-block}
+h1 .glitch::before,h1 .glitch::after{content:attr(data-text);position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;pointer-events:none}
+h1 .glitch:hover::before{opacity:.4;color:#ff4444;transform:translate(-3px,-2px);animation:glitch-sweep .3s ease}
+h1 .glitch:hover::after{opacity:.4;color:#4488ff;transform:translate(3px,2px);animation:glitch-sweep .3s ease .05s}
+@keyframes glitch-sweep{0%{clip-path:inset(0 0 85% 0)}25%{clip-path:inset(20% 0 65% 0)}50%{clip-path:inset(40% 0 45% 0)}75%{clip-path:inset(60% 0 25% 0)}100%{clip-path:inset(80% 0 5% 0)}}
+h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:1.5rem;font-variation-settings:'opsz' 36;font-weight:300}
+h2 strong{font-weight:600;color:#C9A96E}
+h3{font-size:1.35rem;margin-bottom:.5rem;font-weight:600;font-family:'Inter',sans-serif}
+p{max-width:65ch;margin-bottom:1rem;font-weight:300;color:#b0aeb0}
+a{color:#C9A96E;text-decoration:none;transition:all .3s}
+a:hover{color:#e0c080;text-shadow:0 0 20px rgba(201,169,110,.3)}
 .container{max-width:960px;margin:0 auto;padding:0 1.5rem}
-section{padding:5rem 0}
-
-/* === HERO === */
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;padding:2rem 0}
-.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse at 30% 50%,rgba(201,169,110,0.04) 0%,transparent 60%),radial-gradient(ellipse at 70% 50%,rgba(201,169,110,0.02) 0%,transparent 60%);pointer-events:none}
-.hero h1{font-size:clamp(2.5rem,6vw,4.5rem);margin-bottom:1rem}
-.hero .subtitle{font-size:clamp(1rem,2vw,1.3rem);color:#888;margin-bottom:2rem;max-width:55ch}
-.hero .emblem{font-size:3rem;margin-bottom:1.5rem;display:block}
-
-/* === BUTTONS === */
-.btn-group{display:flex;flex-wrap:wrap;gap:1rem;margin:2rem 0}
-.btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 1.75rem;border-radius:6px;font-weight:600;font-size:1rem;border:none;cursor:pointer;transition:all .2s}
-.btn-primary{background:#C9A96E;color:#0a0e14}
-.btn-primary:hover{background:#d4b87a;transform:translateY(-1px);color:#0a0e14}
-.btn-outline{border:1.5px solid #C9A96E;color:#C9A96E;background:transparent}
-.btn-outline:hover{background:rgba(201,169,110,0.1);color:#e0c080}
-.btn-github{background:#24292e;color:#fff}
-.btn-github:hover{background:#2b3137;color:#fff}
-
-/* === THE KIT SECTION === */
+section{padding:6rem 0}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:2rem 0;position:relative}
+.hero::before{content:'';position:absolute;top:50%;left:50%;width:120vw;height:120vh;transform:translate(-50%,-50%);background:radial-gradient(ellipse 50% 50%,rgba(201,169,110,.06) 0%,transparent 50%),radial-gradient(ellipse 30% 30%,rgba(201,169,110,.03) 0%,transparent 40%),radial-gradient(ellipse 70% 70%,rgba(201,169,110,.02) 0%,transparent 40%);pointer-events:none}
+.hero .emblem{font-size:4rem;margin-bottom:1rem;display:inline-block;animation:float 6s ease-in-out infinite,glow-pulse 3s ease-in-out infinite;filter:drop-shadow(0 0 30px rgba(201,169,110,.3))}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes glow-pulse{0%,100%{filter:drop-shadow(0 0 20px rgba(201,169,110,.2))}50%{filter:drop-shadow(0 0 50px rgba(201,169,110,.5))}}
+.hero h1{margin-bottom:.5rem}
+.hero .subtitle{font-size:clamp(1.1rem,2vw,1.4rem);color:#888;margin-bottom:2rem;max-width:60ch;margin-left:auto;margin-right:auto;font-weight:300;opacity:0;animation:fadeUp 1s ease .5s forwards;transform:translateY(20px)}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+.hero .scroll-indicator{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:#555;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;animation:fadeUp 1s ease 2s forwards;opacity:0}
+.hero .scroll-indicator .mouse{border:1.5px solid #555;border-radius:20px;width:22px;height:34px;display:flex;justify-content:center;padding-top:6px}
+.hero .scroll-indicator .mouse .dot{width:3px;height:8px;background:#888;border-radius:2px;animation:scroll 2s ease infinite}
+@keyframes scroll{0%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(10px)}}
+.btn-group{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin:2rem 0}
+.btn{display:inline-flex;align-items:center;gap:.6rem;padding:1rem 2rem;border-radius:8px;font-weight:600;font-size:1rem;border:none;cursor:pointer;transition:all .3s}
+.btn-primary{background:linear-gradient(135deg,#C9A96E,#d4b87a,#C9A96E);background-size:200% 200%;color:#0E1422;animation:shimmer 3s ease infinite}
+@keyframes shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,169,110,.3)}
+.btn-outline{border:1.5px solid #C9A96E;color:#C9A96E;background:transparent;backdrop-filter:blur(10px)}
+.btn-outline:hover{background:rgba(201,169,110,.1);box-shadow:0 0 25px rgba(201,169,110,.15);border-color:#e0c080}
+.btn-github{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:#fff;backdrop-filter:blur(10px)}
+.btn-github:hover{background:rgba(255,255,255,.15);transform:translateY(-2px)}
+.glass-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:2rem;backdrop-filter:blur(12px);transition:all .4s;position:relative;overflow:hidden}
+.glass-card::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(201,169,110,.05),transparent);transition:left .6s}
+.glass-card:hover{transform:translateY(-4px);border-color:rgba(201,169,110,.3);box-shadow:0 12px 40px rgba(0,0,0,.3),0 0 30px rgba(201,169,110,.05)}
+.glass-card:hover::before{left:100%}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;margin:2rem 0}
+.stat-item{text-align:center;padding:1.5rem}
+.stat-number{font-family:'Fraunces',serif;font-size:clamp(2.5rem,4vw,3.5rem);font-weight:600;color:#C9A96E;display:block;margin-bottom:.25rem;line-height:1;font-variation-settings:'opsz' 96}
+.stat-number .plus{font-size:.6em;vertical-align:super;opacity:.7}
+.stat-label{font-size:.85rem;color:#888;font-weight:300}
+.quote-block{border-left:2px solid #C9A96E;padding:2rem 2.5rem;margin:3rem 0;background:rgba(201,169,110,.02);border-radius:0 12px 12px 0;position:relative}
+.quote-block::before{content:'"';position:absolute;top:-.2rem;left:.5rem;font-size:4rem;color:rgba(201,169,110,.1);font-family:'Fraunces',serif;line-height:1}
+.quote-block p{font-style:italic;font-size:1.15rem;max-width:none;margin-bottom:.5rem;color:#ccc;font-weight:300}
+.quote-block cite{font-style:normal;font-size:.9rem;color:#666}
 .kit-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;margin:2rem 0}
-.kit-card{background:#111820;border:1px solid #1e2836;border-radius:8px;padding:1.75rem;transition:border-color .2s,transform .2s}
-.kit-card:hover{border-color:#C9A96E;transform:translateY(-2px)}
-.kit-card .icon{font-size:1.75rem;margin-bottom:0.75rem;display:block}
-.kit-card h3{font-size:1.1rem;margin-bottom:0.5rem}
-.kit-card p{font-size:0.9rem;color:#999;margin-bottom:1rem;max-width:none}
-.kit-card .file-link{font-size:0.85rem;color:#C9A96E;font-family:monospace}
-
-/* === STATS === */
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;margin:2rem 0;text-align:center}
-.stat-number{font-size:2.5rem;font-weight:800;color:#C9A96E;display:block}
-.stat-label{font-size:0.9rem;color:#888;margin-top:0.25rem}
-
-/* === TIMELINE === */
-.timeline{position:relative;margin:2rem 0}
-.timeline::before{content:'';position:absolute;left:0;top:0;height:100%;width:2px;background:#1e2836}
-.timeline-item{padding-left:2rem;position:relative;margin-bottom:2rem}
-.timeline-item::before{content:'';position:absolute;left:-4px;top:0.5rem;width:10px;height:10px;border-radius:50%;background:#C9A96E;border:2px solid #0a0e14}
-.timeline-item h3{font-size:1rem;margin-bottom:0.25rem}
-.timeline-item p{font-size:0.9rem;color:#999;margin-bottom:0}
-
-/* === QUOTE === */
-.quote-block{border-left:3px solid #C9A96E;padding:1.5rem 2rem;margin:2rem 0;background:rgba(201,169,110,0.03);border-radius:0 8px 8px 0}
-.quote-block p{font-style:italic;font-size:1.1rem;max-width:none;margin-bottom:0.5rem}
-.quote-block cite{font-style:normal;font-size:0.9rem;color:#888}
-
-/* === FOOTER === */
-footer{padding:3rem 0;border-top:1px solid #1e2836;text-align:center;color:#555;font-size:0.85rem}
+.kit-card .icon{font-size:2rem;margin-bottom:1rem;display:inline-block;transition:transform .3s}
+.kit-card:hover .icon{transform:scale(1.15)}
+.kit-card h3{font-size:1.1rem;margin-bottom:.5rem;color:#e0ddd5}
+.kit-card p{font-size:.9rem;color:#888;margin-bottom:1rem;max-width:none}
+.kit-card .file-link{font-size:.8rem;color:#C9A96E;font-family:monospace;opacity:.7;display:block;padding-top:.5rem;border-top:1px solid rgba(255,255,255,.04)}
+.opsec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin:2rem 0}
+.timeline{position:relative;margin:3rem 0;padding-left:2rem}
+.timeline::before{content:'';position:absolute;left:0;top:0;height:100%;width:1px;background:linear-gradient(to bottom,#C9A96E,transparent)}
+.timeline-item{padding-left:2rem;position:relative;margin-bottom:2.5rem}
+.timeline-item::before{content:'';position:absolute;left:-2.35rem;top:.6rem;width:12px;height:12px;border-radius:50%;background:#0E1422;border:2px solid #C9A96E;box-shadow:0 0 15px rgba(201,169,110,.2);transition:box-shadow .3s}
+.timeline-item:hover::before{box-shadow:0 0 25px rgba(201,169,110,.4)}
+.timeline-item h3{font-size:1.05rem;margin-bottom:.25rem;color:#e0ddd5}
+.timeline-item p{font-size:.9rem;color:#888;margin-bottom:0}
+.section-label{display:inline-block;text-transform:uppercase;letter-spacing:.15em;font-size:.7rem;color:#C9A96E;margin-bottom:.75rem;font-weight:600;padding:.35rem .75rem;border:1px solid rgba(201,169,110,.2);border-radius:4px;background:rgba(201,169,110,.04)}
+footer{padding:4rem 0;border-top:1px solid rgba(255,255,255,.04);text-align:center;color:#555;font-size:.85rem}
 footer a{color:#666}
 footer a:hover{color:#C9A96E}
-
-/* === MISC === */
-.section-label{text-transform:uppercase;letter-spacing:0.1em;font-size:0.75rem;color:#C9A96E;margin-bottom:0.5rem;font-weight:600}
-hr{border:none;border-top:1px solid #1e2836;margin:0}
-.tag{display:inline-block;padding:0.2rem 0.6rem;border-radius:4px;font-size:0.75rem;font-weight:600;background:rgba(201,169,110,0.1);color:#C9A96E;margin-right:0.5rem;margin-bottom:0.5rem}
-.tag-success{background:rgba(34,197,94,0.1);color:#22c55e}
-.tag-danger{background:rgba(239,68,68,0.1);color:#ef4444}
-
-/* === RESPONSIVE === */
-@media(max-width:600px){section{padding:3rem 0}.hero{min-height:auto;padding:4rem 0}.kit-grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}}
+footer .fourth-amendment{padding-top:2rem;margin-top:2rem;border-top:1px solid rgba(255,255,255,.03);font-size:.8rem;max-width:600px;margin-left:auto;margin-right:auto;color:#444;line-height:1.6}
+.divider{border:none;height:1px;background:linear-gradient(to right,transparent,rgba(201,169,110,.08),transparent);margin:0}
+.animate{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
+.animate.visible{opacity:1;transform:translateY(0)}
+.animate-d1{transition-delay:.1s}
+.animate-d2{transition-delay:.2s}
+.animate-d3{transition-delay:.3s}
+.animate-d4{transition-delay:.4s}
+.animate-d5{transition-delay:.5s}
+.animate-d6{transition-delay:.6s}
+@media(max-width:600px){section{padding:4rem 0}.hero{min-height:auto;padding:5rem 0}.kit-grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.opsec-grid{grid-template-columns:1fr 1fr}.quote-block{padding:1.5rem}}
 </style>
 </head>
 <body>
+<canvas id="particles"></canvas>
 
-<!-- HERO -->
 <section class="hero">
   <div class="container">
     <span class="emblem">🦅</span>
-    <h1>UNFLOCK<br>AMERICA</h1>
+    <h1><span class="glitch" data-text="UNFLOCK">UNFLOCK</span><br><span class="gold">AMERICA</span></h1>
     <p class="subtitle">A constitutional movement to end warrantless ALPR surveillance in your city. Free tools, model legislation, and a proven playbook — built by citizens, for citizens.</p>
     <div class="btn-group">
       <a href="https://github.com/UnflockAmerica/unflock-america/archive/refs/heads/main.zip" class="btn btn-primary">⬇ Download the Full Kit</a>
-      <a href="https://github.com/UnflockAmerica/unflock-america" class="btn btn-github" target="_blank">&#9998; GitHub Repository</a>
+      <a href="https://github.com/UnflockAmerica/unflock-america" class="btn btn-github" target="_blank">Browse on GitHub →</a>
     </div>
+    <div class="scroll-indicator"><div class="mouse"><div class="dot"></div></div><span>Scroll</span></div>
   </div>
 </section>
 
-<!-- THE PROBLEM -->
 <section id="problem">
   <div class="container">
-    <span class="section-label">The Problem</span>
-    <h2>83,000 Cameras. Zero Warrants.</h2>
-    <p>Flock Safety operates the largest automated license plate reader network in the United States — over 83,000 cameras that capture every vehicle, every day, everywhere. This data is stored, searched, and shared across jurisdictions without a warrant, without probable cause, and without your consent.</p>
+    <span class="section-label animate">The Problem</span>
+    <h2 class="animate animate-d1"><strong>83,000</strong> Cameras. <strong>Zero</strong> Warrants.</h2>
+    <p class="animate animate-d2">Flock Safety operates the largest automated license plate reader network — over 83,000 cameras capturing every vehicle, every day, everywhere. This data is stored, searched, and shared across jurisdictions without a warrant, without probable cause, and without your consent.</p>
     <div class="stats">
-      <div>
-        <span class="stat-number">83,000+</span>
-        <span class="stat-label">Cameras Nationwide</span>
-      </div>
-      <div>
-        <span class="stat-number">3.9M</span>
-        <span class="stat-label">Warrantless Searches (San Jose, 1 year)</span>
-      </div>
-      <div>
-        <span class="stat-number">1.6M</span>
-        <span class="stat-label">Federal Data Shares (SFPD)</span>
-      </div>
-      <div>
-        <span class="stat-number">30+</span>
-        <span class="stat-label">Cities Have Already Canceled</span>
-      </div>
+      <div class="stat-item animate animate-d3"><span class="stat-number" data-target="83000">0<span class="plus">+</span></span><span class="stat-label">Cameras Nationwide</span></div>
+      <div class="stat-item animate animate-d4"><span class="stat-number" data-target="3900000">0</span><span class="stat-label">Warrantless Searches (San Jose)</span></div>
+      <div class="stat-item animate animate-d5"><span class="stat-number" data-target="1600000">0</span><span class="stat-label">Data Shares to Federal Agencies</span></div>
+      <div class="stat-item animate animate-d6"><span class="stat-number" data-target="30">0<span class="plus">+</span></span><span class="stat-label">Cities Have Already Canceled</span></div>
     </div>
-    <div class="quote-block">
-      <p>"A person does not surrender all Fourth Amendment protection by venturing into the public sphere. To the contrary, what one seeks to preserve as private, even in an area accessible to the public, may be constitutionally protected."</p>
-      <cite>— Chief Justice John Roberts, <em>Carpenter v. United States</em> (2018)</cite>
+    <div class="quote-block animate animate-d1">
+      <p>"A person does not surrender all Fourth Amendment protection by venturing into the public sphere. To
+      <cite>&#8212; Chief Justice John Roberts, <em>Carpenter v. United States</em> (2018)</cite>
     </div>
   </div>
 </section>
 
-<hr>
+<div class="divider"></div>
 
-<!-- THE KIT -->
 <section id="kit">
   <div class="container">
-    <span class="section-label">The Arsenal</span>
-    <h2>Everything You Need to Fight</h2>
-    <p>Six ready-to-use files. No lawyers required. No affiliation needed. Fork it, adapt it, take it to your city council.</p>
+    <span class="section-label animate">The Arsenal</span>
+    <h2 class="animate animate-d1">Everything You Need to <strong>Fight</strong></h2>
+    <p class="animate animate-d2">Six ready-to-use files. No lawyers required. No affiliation needed. Fork it, adapt it, take it to your city council.</p>
     <div class="kit-grid">
-      <div class="kit-card">
+      <div class="glass-card kit-card animate animate-d1">
         <span class="icon">📜</span>
         <h3>Model Ordinance</h3>
         <p>A 13-section municipal ordinance ready for introduction. Warrant requirements, 7-day retention, annual audits, data-sharing ban, private right of action, and evidence suppression.</p>
         <span class="file-link">01-MODEL-ORDINANCE.md</span>
       </div>
-      <div class="kit-card">
+      <div class="glass-card kit-card animate animate-d2">
         <span class="icon">🔍</span>
         <h3>FOIA Request Template</h3>
         <p>A comprehensive 7-category public records request. Camera inventory, contracts, search logs, training records, retention policies, misuse complaints, and vendor security audits.</p>
         <span class="file-link">02-FOIA-TEMPLATE.md</span>
       </div>
-      <div class="kit-card">
+      <div class="glass-card kit-card animate animate-d3">
         <span class="icon">🎙</span>
         <h3>Public Testimony Script</h3>
         <p>A timed 2.5-minute citizen testimony script for city council meetings, plus a 60-second short version and a fact-sheet cheat card with key data points.</p>
         <span class="file-link">03-TESTIMONY-TEMPLATE.md</span>
       </div>
-      <div class="kit-card">
+      <div class="glass-card kit-card animate animate-d4">
         <span class="icon">⚖</span>
         <h3>Constitutional Legal Memo</h3>
         <p>Full analysis of why Flock violates the Fourth, First, and Fourteenth Amendments. Includes state constitutional comparison table and active litigation tracker.</p>
         <span class="file-link">04-LEGAL-MEMO.md</span>
       </div>
-      <div class="kit-card">
+      <div class="glass-card kit-card animate animate-d5">
         <span class="icon">📋</span>
         <h3>Campaign Playbook</h3>
         <p>A week-by-week 90-day plan covering reconnaissance, coalition building, pressure campaigns, and the final vote. Includes what to do if you win AND if you lose.</p>
         <span class="file-link">05-CAMPAIGN-PLAYBOOK.md</span>
       </div>
-      <div class="kit-card">
+      <div class="glass-card kit-card animate animate-d6">
         <span class="icon">📖</span>
         <h3>Project README</h3>
-        <p>The front door of UnFlock America — a complete overview of the project, where to start based on your role, and OPSEC guidelines for safe activism.</p>
+        <p>The front door of UnFlock America &#8212; a complete overview of the project, where to start based on your role, and OPSEC guidelines for safe activism.</p>
         <span class="file-link">README.md</span>
       </div>
     </div>
-    <div class="btn-group" style="justify-content:center">
+    <div class="btn-group animate animate-d1">
       <a href="https://github.com/UnflockAmerica/unflock-america/archive/refs/heads/main.zip" class="btn btn-primary">⬇ Download All Files (.zip)</a>
-      <a href="https://github.com/UnflockAmerica/unflock-america" class="btn btn-outline" target="_blank">&#9998; Browse on GitHub</a>
+      <a href="https://github.com/UnflockAmerica/unflock-america" class="btn btn-outline" target="_blank">Browse on GitHub &#8594;</a>
     </div>
   </div>
 </section>
 
-<hr>
+<div class="divider"></div>
 
-<!-- HOW TO USE -->
 <section id="how-to">
   <div class="container">
-    <span class="section-label">How to Use</span>
-    <h2>Take Action in Your City</h2>
+    <span class="section-label animate">How to Use</span>
+    <h2 class="animate animate-d1">Take Action in <strong>Your City</strong></h2>
     <div class="timeline">
-      <div class="timeline-item">
+      <div class="timeline-item animate animate-d1">
         <h3>1. File a FOIA Request</h3>
         <p>Use the FOIA template to request every Flock contract, search log, and policy from your local police department. The data you get back is the ammunition.</p>
       </div>
-      <div class="timeline-item">
+      <div class="timeline-item animate animate-d2">
         <h3>2. Organize Locally</h3>
         <p>Contact your ACLU affiliate, NAACP chapter, Planned Parenthood, and local libertarian groups. This is the rare issue that unites the left and right.</p>
       </div>
-      <div class="timeline-item">
+      <div class="timeline-item animate animate-d3">
         <h3>3. Speak at City Council</h3>
         <p>Use the testimony script at your next council meeting. Time it for when your Flock contract is up for renewal. Bring the evidence.</p>
       </div>
-      <div class="timeline-item">
+      <div class="timeline-item animate animate-d4">
         <h3>4. Introduce the Ordinance</h3>
         <p>Work with a friendly council member to introduce the model ordinance. The warrant requirement, 7-day retention, and audit provisions are the critical pieces.</p>
       </div>
-      <div class="timeline-item">
-        <h3>5. Win — Then Share</h3>
+      <div class="timeline-item animate animate-d5">
+        <h3>5. Win &#8212; Then Share</h3>
         <p>When your city cancels its Flock contract, document what worked and share it. Every win becomes the template for the next city.</p>
       </div>
     </div>
   </div>
 </section>
 
-<hr>
+<div class="divider"></div>
 
-<!-- OPSEC -->
 <section id="opsec">
   <div class="container">
-    <span class="section-label">Security</span>
-    <h2>Justice Doesn't Need a Name</h2>
-    <p>This is constitutionally protected First Amendment activity. But surveillance companies monitor their opposition. Protect yourself:</p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem;margin:2rem 0">
-      <div style="background:#111820;border:1px solid #1e2836;border-radius:8px;padding:1.5rem">
-        <span style="display:block;font-size:1.5rem;margin-bottom:0.5rem">📧</span>
-        <h3 style="font-size:1rem;margin-bottom:0.25rem">ProtonMail</h3>
-        <p style="font-size:0.85rem;color:#999;max-width:none">Use encrypted email for all campaign communications. Never use personal email.</p>
+    <span class="section-label animate">Security</span>
+    <h2 class="animate animate-d1">Justice Doesn't Need a <strong>Name</strong></h2>
+    <p class="animate animate-d2">This is constitutionally protected First Amendment activity. But surveillance companies monitor their opposition. Protect yourself:</p>
+    <div class="opsec-grid">
+      <div class="glass-card animate animate-d3" style="text-align:center">
+        <span style="display:block;font-size:1.5rem;margin-bottom:.75rem">📧</span>
+        <h3 style="font-size:1rem">ProtonMail</h3>
+        <p style="font-size:.85rem">Use encrypted email for all campaign communications. Never use personal email.</p>
       </div>
-      <div style="background:#111820;border:1px solid #1e2836;border-radius:8px;padding:1.5rem">
-        <span style="display:block;font-size:1.5rem;margin-bottom:0.5rem">🔒</span>
-        <h3 style="font-size:1rem;margin-bottom:0.25rem">Signal</h3>
-        <p style="font-size:0.85rem;color:#999;max-width:none">Use Signal for coalition discussions. Encrypted, disappearing messages, no metadata retention.</p>
+      <div class="glass-card animate animate-d4" style="text-align:center">
+        <span style="display:block;font-size:1.5rem;margin-bottom:.75rem">🔒</span>
+        <h3 style="font-size:1rem">Signal</h3>
+        <p style="font-size:.85rem">Use Signal for coalition discussions. Encrypted, disappearing messages.</p>
       </div>
-      <div style="background:#111820;border:1px solid #1e2836;border-radius:8px;padding:1.5rem">
-        <span style="display:block;font-size:1.5rem;margin-bottom:0.5rem">🛡</span>
-        <h3 style="font-size:1rem;margin-bottom:0.25rem">VPN</h3>
-        <p style="font-size:0.85rem;color:#999;max-width:none">Use a VPN or public wifi for research. Never log into campaign accounts from your home network.</p>
+      <div class="glass-card animate animate-d5" style="text-align:center">
+        <span style="display:block;font-size:1.5rem;margin-bottom:.75rem">🛡</span>
+        <h3 style="font-size:1rem">VPN</h3>
+        <p style="font-size:.85rem">Use a VPN for research. Never log into campaign accounts from your home network.</p>
       </div>
-      <div style="background:#111820;border:1px solid #1e2836;border-radius:8px;padding:1.5rem">
-        <span style="display:block;font-size:1.5rem;margin-bottom:0.5rem">📱</span>
-        <h3 style="font-size:1rem;margin-bottom:0.25rem">Burner Accounts</h3>
-        <p style="font-size:0.85rem;color:#999;max-width:none">Create separate social media accounts for campaign work. No personal profiles.</p>
+      <div class="glass-card animate animate-d6" style="text-align:center">
+        <span style="display:block;font-size:1.5rem;margin-bottom:.75rem">📱</span>
+        <h3 style="font-size:1rem">Burner Accounts</h3>
+        <p style="font-size:.85rem">Create separate social media accounts for campaign work. No personal profiles.</p>
       </div>
     </div>
   </div>
 </section>
 
-<hr>
+<div class="divider"></div>
 
-<!-- FOOTER -->
 <footer>
   <div class="container">
-    <p><strong>UNFLOCK AMERICA</strong> — A constitutional movement to end warrantless ALPR surveillance.</p>
-    <p style="margin-top:0.5rem">No copyright claimed. No government affiliation. No attribution required. <a href="https://github.com/UnflockAmerica/unflock-america">Fork this on GitHub</a>.</p>
-    <p style="margin-top:0.5rem"><em>"The right of the people to be secure in their persons, houses, papers, and effects, against unreasonable searches and seizures, shall not be violated..."</em><br>— Fourth Amendment, United States Constitution</p>
+    <p><strong>UNFLOCK AMERICA</strong> &#8212; A constitutional movement to end warrantless ALPR surveillance.</p>
+    <p style="margin-top:.5rem">No copyright claimed. No government affiliation. No attribution required. <a href="https://github.com/UnflockAmerica/unflock-america">Fork this on GitHub</a>.</p>
+    <div class="fourth-amendment">
+      <p><em>"The right of the people to be secure in their persons, houses, papers, and effects, against unreasonable searches and seizures, shall not be violated..."</em><br>&#8212; Fourth Amendment, United States Constitution</p>
+    </div>
   </div>
 </footer>
 
+<script>
+(function() {
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+  let w, h, particles = [];
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  const count = Math.min(120, Math.floor(w * h / 15000));
+  for (let i = 0; i < count; i++) {
+    particles.push({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      r: Math.random() * 2 + 0.5,
+      a: Math.random() * 0.5 + 0.1
+    });
+  }
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    particles.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = w; if (p.x > w) p.x = 0;
+      if (p.y < 0) p.y = h; if (p.y > h) p.y = 0;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(201, 169, 110, ' + p.a + ')';
+      ctx.fill();
+    });
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 120) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = 'rgba(201, 169, 110, ' + (0.08 * (1 - dist / 120)) + ')';
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.15 });
+document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+
+function animateCounter(el) {
+  const target = parseInt(el.dataset.target);
+  if (!target) return;
+  const duration = 2000;
+  const start = performance.now();
+  function update(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = Math.floor(eased * target);
+    el.textContent = current.toLocaleString() + (target > 9999 ? '+' : '');
+    if (progress < 1) requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+}
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateCounter(entry.target);
+      counterObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.stat-number').forEach(el => counterObserver.observe(el));
+</script>
 </body>
 </html>
