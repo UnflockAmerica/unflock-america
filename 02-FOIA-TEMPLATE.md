@@ -1,10 +1,10 @@
 # UNFLOCK AMERICA — FOIA REQUEST TEMPLATE
 ## Request for Automated License Plate Reader (ALPR) Records
 
-**TO:** [Name of Police Department / Records Division]
+**TO:** [NAME OF POLICE DEPARTMENT / Records Division of **[CITY NAME]**]
 **ATTN:** Records Custodian / FOIA Officer
-**ADDRESS:** [Department Address]
-**EMAIL:** [Department FOIA email]
+**ADDRESS:** [CITY NAME] Police Department Address
+**EMAIL:** [CITY NAME] PD FOIA email
 **FAX:** [Department FOIA fax, if applicable]
 
 **FROM:** [Your Full Name]

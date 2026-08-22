@@ -2,7 +2,7 @@
 ## Why Flock Safety's ALPR Surveillance Network Violates the United States Constitution
 
 **CLASSIFICATION:** Public / Open Source Intelligence
-**PREPARED FOR:** Activists, attorneys, legislators, city council members, and citizens of the United States
+**PREPARED FOR:** Activists in **[CITY NAME], [STATE NAME]**
 **DATE:** August 2026
 **PURPOSE:** To provide a constitutionally grounded legal framework for legislative action, litigation, and community organizing against warrantless ALPR surveillance.
 

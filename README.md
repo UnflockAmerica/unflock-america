@@ -30,7 +30,7 @@ Flock Safety operates 83,000+ automated license plate reader cameras across the 
 
 ### 🎯 WHERE TO START
 
-**First time activist?** Start with `03-TESTIMONY-TEMPLATE.md` — the shortest path to impact. Go to your next city council meeting and speak.
+**First time activist in [CITY NAME]?** Start with `03-TESTIMONY-TEMPLATE.md` — the shortest path to impact. Go to your next city council meeting and speak.
 
 **Got a city council member's ear?** Start with `01-MODEL-ORDINANCE.md` and `04-LEGAL-MEMO.md` — give them the legal weapon.
 

@@ -1,0 +1,98 @@
+name: Setup Campaign
+on:
+  issues:
+    types: [opened, edited]
+  workflow_dispatch:
+    inputs:
+      city:
+        description: 'Your City Name (e.g. "Chandler")'
+        required: true
+      state:
+        description: 'Your State (e.g. "Arizona")'
+        required: true
+      email:
+        description: 'Contact email (optional, for FOIA responses)'
+
+jobs:
+  setup:
+    if: contains(github.event.issue.title, 'New Campaign') || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pages: write
+      id-token: write
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Extract City Info
+        id: info
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            CITY="${{ inputs.city }}"
+            STATE="${{ inputs.state }}"
+            EMAIL="${{ inputs.email }}"
+          else
+            BODY="${{ github.event.issue.body }}"
+            CITY=$(echo "$BODY" | grep -i "city:" | head -1 | cut -d: -f2 | xargs)
+            STATE=$(echo "$BODY" | grep -i "state:" | head -1 | cut -d: -f2 | xargs)
+            EMAIL=$(echo "$BODY" | grep -i "email:" | head -1 | cut -d: -f2 | xargs)
+          fi
+          echo "city=$CITY" >> $GITHUB_OUTPUT
+          echo "state=$STATE" >> $GITHUB_OUTPUT
+          echo "email=$EMAIL" >> $GITHUB_OUTPUT
+          echo "slug=$(echo $CITY | tr '[:upper:]' '[:lower:]' | tr ' ' '-')" >> $GITHUB_OUTPUT
+
+      - name: Customize Ordinance
+        run: |
+          CITY="${{ steps.info.outputs.city }}"
+          STATE="${{ steps.info.outputs.state }}"
+          SLUG="${{ steps.info.outputs.slug }}"
+          
+          # Replace placeholders in every markdown file
+          find . -name '*.md' -exec sed -i \
+            -e "s/\[CITY NAME\]/$CITY/g" \
+            -e "s/\[CITY\/COUNTY\]/$CITY/g" \
+            -e "s/\[STATE NAME\]/$STATE/g" \
+            -e "s/\[Your City\]/$CITY/g" \
+            -e "s/\[Your State\]/$STATE/g" \
+            -e "s/\[CITY\]/$CITY/g" \
+            -e "s/\[STATE\]/$STATE/g" \
+            {} +
+          
+          # Update README with city name
+          sed -i "s/unflocknow.com/${SLUG}.github.io/g" README.md 2>/dev/null || true
+          
+          echo "Customized for $CITY, $STATE"
+
+      - name: Commit Customizations
+        run: |
+          git config user.name "Campaign Bot"
+          git config user.email "bot@unflockamerica.org"
+          git add -A
+          git commit -m "Auto-customize for ${{ steps.info.outputs.city }}, ${{ steps.info.outputs.state }}" || echo "Nothing to commit"
+          git push
+
+      - name: Enable GitHub Pages
+        uses: actions/configure-pages@v4
+
+      - name: Close Setup Issue
+        if: github.event_name == 'issues'
+        run: |
+          gh issue comment ${{ github.event.issue.number }} \
+            --body "✅ **Your campaign is ready!**  
+          
+          Your customized kit for **${{ steps.info.outputs.city }}, ${{ steps.info.outputs.state }}** is now live at **https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/**
+          
+          **Next steps:**
+          1. Visit your site and download the files
+          2. File the FOIA request with your local police department
+          3. Find your next city council meeting date
+          4. Use the testimony script to speak at the meeting
+          
+          Need help? Open another issue."
+          gh issue close ${{ github.event.issue.number }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
